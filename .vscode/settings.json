@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+    "cmake.configureOnOpen": true,
+    "files.associations": {
+        "iostream": "cpp"
+    }
+}
