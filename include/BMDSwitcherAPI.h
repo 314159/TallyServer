@@ -1,3 +1,5 @@
+#pragma once
+
 /* -LICENSE-START-
 ** Copyright (c) 2023 Blackmagic Design
 **
