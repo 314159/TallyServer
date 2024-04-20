@@ -8,7 +8,10 @@
 #include "include/com_ptr.h"
 
 namespace sbn {
+    class SwitcherInput;
     class SwitcherInputIterator;
+    class SwitcherMixEffectBlock;
+    class SwitcherMixEffectBlockIterator;
 
     // ConnectionError is used to throw an error when unable to connect
     class ConnectionError{
@@ -20,8 +23,6 @@ namespace sbn {
         BMDSwitcherConnectToFailure m_failureReason;
     };
  
-    class SwitcherInput;
- 
     // Switcher represents a connection to a switcher.
     class Switcher {
         public:
@@ -29,6 +30,8 @@ namespace sbn {
             std::string GetProductName();
             std::vector<std::unique_ptr<SwitcherInput>> GetInputs();
             std::unique_ptr<SwitcherInputIterator> InputIterator();
+            std::vector<std::unique_ptr<SwitcherMixEffectBlock>> GetMixEffectBlocks();
+            std::unique_ptr<SwitcherMixEffectBlockIterator> MixEffectBlockIterator();
 
         private:
             com_ptr<IBMDSwitcher> m_switcher;

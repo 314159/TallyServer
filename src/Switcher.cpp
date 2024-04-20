@@ -1,6 +1,8 @@
 #include "Switcher.h"
 #include "SwitcherInput.h"
 #include "SwitcherInputIterator.h"
+#include "SwitcherMixEffectBlock.h"
+#include "SwitcherMixEffectBlockIterator.h"
 #include "CFString.h"
 
 namespace sbn {
@@ -42,6 +44,26 @@ namespace sbn {
             return nullptr;
         }
         auto i = std::make_unique<SwitcherInputIterator>(iterator);
+        return std::move(i);
+    }
+
+    std::vector<std::unique_ptr<SwitcherMixEffectBlock>> Switcher::GetMixEffectBlocks() {
+        auto iterator = MixEffectBlockIterator();
+        auto inputs = std::vector<std::unique_ptr<SwitcherMixEffectBlock>>{};
+
+        while (auto input = iterator->Next()) {
+            inputs.emplace_back(std::move(input));
+        }
+
+        return inputs;
+    }
+
+    std::unique_ptr<SwitcherMixEffectBlockIterator> Switcher::MixEffectBlockIterator() {
+        auto iterator = com_ptr<IBMDSwitcherMixEffectBlockIterator>{};
+        if (FAILED(m_switcher->CreateIterator(IID_IBMDSwitcherMixEffectBlockIterator, reinterpret_cast<LPVOID *>(iterator.releaseAndGetAddressOf())))) {
+            return nullptr;
+        }
+        auto i = std::make_unique<SwitcherMixEffectBlockIterator>(iterator);
         return std::move(i);
     }
 }
