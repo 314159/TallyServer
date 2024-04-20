@@ -1,5 +1,5 @@
-tally: *.cpp *.h
-	c++  -framework CoreFoundation -std=c++20 -L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++  *.cpp include/BMDSwitcherAPIDispatch.cpp -o tally
+tally: src/*.cpp src/*.h include/*
+	c++  -framework CoreFoundation -std=c++20 -L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++  src/*.cpp include/BMDSwitcherAPIDispatch.cpp -o tally
 
 PSEUDO: simulate
 simulate:
