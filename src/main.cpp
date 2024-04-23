@@ -3,9 +3,11 @@
 #include "Discovery.h"
 #include "Switcher.h"
 #include "SwitcherInput.h"
+#include "SwitcherMixEffectBlock.h"
 #include <iostream>
 #include <memory>
 #include <iomanip>
+#include <vector>
 
 int main()
 {
@@ -23,5 +25,13 @@ int main()
         std::cout << " " << ((i->IsLive())    ? "L" : " ") << ((i->IsPreview()) ? "P" : " ");
         std::cout << " " << std::left << std::setw(4) << i->GetShortName() << " " << i->GetLongName();
         std::cout << "\n";
+    }
+
+    std::cout << "M/E engines: \n";
+    {
+        auto i = 0;
+        for (auto &me : s->GetMixEffectBlocks()) {
+            std::cout << "  M/E #" << i++ << " L:" << me->ProgramInput() << ", P:" << me->PreviewInput() << "\n";
+        }
     }
 }

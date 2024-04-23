@@ -13,6 +13,8 @@ namespace sbn {
         public:
             SwitcherMixEffectBlock(com_ptr<IBMDSwitcherMixEffectBlock> me);
             void AddCallback(auto f);
+            std::string ProgramInput();
+            std::string PreviewInput();
         private:
             com_ptr<IBMDSwitcherMixEffectBlock> m_me;
     };
