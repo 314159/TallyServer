@@ -6,7 +6,7 @@ SRC := $(wildcard *.cpp)
 OBJ := $(SRC:%.cpp=%.o)
 
 CXX := c++
-CPPFLAGS := -I. -MMD
+CPPFLAGS := -I.
 CXXFLAGS := -std=c++20 -I .
 LDLIBS := 
 
